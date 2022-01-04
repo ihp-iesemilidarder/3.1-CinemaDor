@@ -12,6 +12,7 @@ import java.util.List;
 
 import com.cinema.bd.BDConnectionMySQL;
 import com.cinema.dto.Film;
+import com.cinema.dto.Director;
 import com.cinema.dto.Genere;
 import com.cinema.dto.Session;
 
@@ -24,6 +25,7 @@ public class FilmService {
 	public List<Film> getListFilms() {
         
 		BDConnectionMySQL bd = new BDConnectionMySQL();
+		BDConnectionMySQL bdDirector = new BDConnectionMySQL();
         List<Film> list = new ArrayList<>();
         try {
         	String query = "select * from film";            
@@ -42,7 +44,7 @@ public class FilmService {
 					Date release = resultat.getDate("flm_date_release");
 					Boolean premiere = resultat.getBoolean("flm_premiere");
 					double duration = resultat.getDouble("flm_duration");
-					
+					Integer idDirector = resultat.getInt("flm_dir_id");
 					Film peli = new Film( Integer.valueOf(id), 
 												   title, 
 												   synopsis, 
@@ -51,7 +53,8 @@ public class FilmService {
 												   Genere.valueOf(genre), 
 												   convertToLocalDate(release), 
 												   premiere,
-												   duration);
+												   duration,
+												   idDirector);
 					System.out.println( peli.toString() );
 					list.add(peli);
 	            }
@@ -70,6 +73,7 @@ public class FilmService {
 	public List<Film> getListFilms(Genere gen) {
 		
 		BDConnectionMySQL bd = new BDConnectionMySQL();
+		BDConnectionMySQL bdDirector = new BDConnectionMySQL();
 		List<Film> list = new ArrayList<>();
 		try {
 			String query = "select * from film";
@@ -94,7 +98,7 @@ public class FilmService {
 					Date release = resultat.getDate("flm_date_release");
 					Boolean premiere = resultat.getBoolean("flm_premiere");
 					double duration = resultat.getDouble("flm_duration");
-					
+					Integer idDirector = resultat.getInt("flm_dir_id");
 					Film peli = new Film( Integer.valueOf(id), 
 												   title, 
 												   synopsis, 
@@ -103,7 +107,8 @@ public class FilmService {
 												   Genere.valueOf(genre), 
 												   convertToLocalDate(release), 
 												   premiere,
-												   duration); 
+												   duration,
+												   idDirector); 
 					
 					System.out.println( peli.toString() );
 					list.add(peli);
@@ -121,6 +126,7 @@ public class FilmService {
 	public List<Film> getListFilmsbyTitle(String titleFilter) {
 		
 		BDConnectionMySQL bd = new BDConnectionMySQL();
+		BDConnectionMySQL bdDirector = new BDConnectionMySQL();
 		List<Film> list = new ArrayList<>();
 		try {
 			String query = "select * from film";
@@ -145,6 +151,7 @@ public class FilmService {
 					Date release = resultat.getDate("flm_date_release");
 					Boolean premiere = resultat.getBoolean("flm_premiere");
 					double duration = resultat.getDouble("flm_duration");
+					Integer idDirector = resultat.getInt("flm_dir_id");
 					
 					Film peli = new Film( Integer.valueOf(id), 
 												   title, 
@@ -154,7 +161,8 @@ public class FilmService {
 												   Genere.valueOf(genre), 
 												   convertToLocalDate(release), 
 												   premiere,
-												   duration); 
+												   duration,
+												   idDirector); 
 					
 					System.out.println( peli.toString() );
 					list.add(peli);
@@ -236,6 +244,7 @@ public class FilmService {
 	public Film getFilm(int filtreId) {
 		
 		BDConnectionMySQL bd = new BDConnectionMySQL();
+		BDConnectionMySQL bdDirector = new BDConnectionMySQL();
 		Film peli = null;
 		try {
 			String query = "SELECT * FROM film WHERE flm_id = ?";        
@@ -258,6 +267,7 @@ public class FilmService {
 				Date release = resultat.getDate("flm_date_release");
 				Boolean premiere = resultat.getBoolean("flm_premiere");
 				double duration = resultat.getDouble("flm_duration");
+				Integer idDirector = resultat.getInt("flm_dir_id");
 				peli = new Film( Integer.valueOf(id), 
 											   title, 
 											   synopsis, 
@@ -266,7 +276,8 @@ public class FilmService {
 											   Genere.valueOf(genre), 
 											   convertToLocalDate(release), 
 											   premiere,
-											   duration); 
+											   duration,
+											   idDirector); 
 				
 				// Recuperam l'horari de la pel·lícula de la BD
 				List<Session> horari = getListSessions(id);

@@ -24,6 +24,7 @@ public class Film implements Serializable {
     private List<Session> horari = new ArrayList<>();
     private double duration;
     private Boolean club;
+    private int director;
 
     public Film(Integer id, String nom, String sinopsi) {
         this.id = id;
@@ -37,7 +38,21 @@ public class Film implements Serializable {
         this.sinopsi = sinopsi;
         this.duration = duration;
     }
+    public Film(Integer id, String nom, String sinopsi,int director) {
+        this.id = id;
+        this.nom = nom;
+        this.sinopsi = sinopsi;
+        this.director = director;
+    }
 
+    public Film(Integer id, String nom, String sinopsi,double duration, int director) {
+        this.id = id;
+        this.nom = nom;
+        this.sinopsi = sinopsi;
+        this.duration = duration;
+        this.director = director;
+    }
+    
     public Film(Integer id, String nom, String sinopsi, String caratula, Integer edatRec, Genere genere, LocalDate dataEstreno, Boolean estreno, double duration) {
         this.id = id;
         this.nom = nom;
@@ -61,7 +76,49 @@ public class Film implements Serializable {
         this.edatRec=edatRec;
     }
 
-    public Boolean getEstreno() {
+    public Film(Integer id, String nom, String sinopsi, String caratula, Integer edatRec, Genere genere, LocalDate dataEstreno, Boolean estreno, double duration, int director) {
+        this.id = id;
+        this.nom = nom;
+        this.sinopsi = sinopsi;
+        this.caratula = caratula;
+        this.genere = genere;
+        this.dataEstreno = dataEstreno;
+        this.estreno = estreno;
+        this.edatRec=edatRec;
+        this.duration = duration;
+        this.director = director;
+    }
+    
+    public Film(Integer id, String nom, String sinopsi, String caratula, Integer edatRec, Genere genere, LocalDate dataEstreno, Boolean estreno, int director) {
+        this.id = id;
+        this.nom = nom;
+        this.sinopsi = sinopsi;
+        this.caratula = caratula;
+        this.genere = genere;
+        this.dataEstreno = dataEstreno;
+        this.estreno = estreno;
+        this.edatRec=edatRec;
+        this.director = director;
+    }
+    
+
+    public Boolean getClub() {
+		return club;
+	}
+
+	public void setClub(Boolean club) {
+		this.club = club;
+	}
+
+	public int getDirector() {
+		return director;
+	}
+
+	public void setDirector(int director) {
+		this.director = director;
+	}
+
+	public Boolean getEstreno() {
         return estreno;
     }
 
@@ -157,7 +214,7 @@ public class Film implements Serializable {
 	public String toString() {
 		return "Film [id=" + id + ", nom=" + nom + ", sinopsi=" + sinopsi + ", caratula=" + caratula + ", genere="
 				+ genere + ", edatRec=" + edatRec + ", dataEstreno=" + dataEstreno + ", estreno=" + estreno
-				+ ", horari=" + horari + ", duration=" + duration + "]";
+				+ ", horari=" + horari + ", duration=" + duration + ", club=" + club + ", director=" + director + "]";
 	}
 
 	public double getDuration() {

@@ -6,7 +6,9 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.cinema.service.FilmService" %>
+<%@ page import="com.cinema.service.DirectorService" %>
 <%@ page import="com.cinema.dto.Genere" %>
+<%@ page import="com.cinema.dto.Director" %>
 <%@ page import="com.cinema.dto.Film"%>
 
 <%
@@ -21,11 +23,13 @@
 	}
   
 	FilmService serveiFilm = new FilmService();
+	DirectorService serveiDirector = new DirectorService();
 	List<Film> llistaFilms = serveiFilm.getListFilms(genere);
 	if(pTitle != null){
 		llistaFilms = serveiFilm.getListFilmsbyTitle(pTitle);
 	}
 	request.setAttribute("llistaFilms", llistaFilms);
+	request.setAttribute("Director",serveiDirector);
 	
 	// També introduím el genere al request 
 	request.setAttribute("genere", pGenere);
@@ -81,6 +85,7 @@
 										<img src="img/age-tp.png" style="width:20px"/>
 										Edat recomanada: <c:out value="${film.edatRec}"/>
 										<div>Duration: <c:out value="${film.duration}"></c:out>h</div>
+										<div>Director: <c:out value="${Director.getListDirectors(film.director).get(0).getDIR_NAME()}"></c:out> <c:out value="${Director.getListDirectors(film.director).get(0).getDIR_SURNAME()}"></c:out></div>
 									</p>
 								</div>
 							</li>
