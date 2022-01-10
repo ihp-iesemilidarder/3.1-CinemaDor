@@ -15,11 +15,16 @@ import com.cinema.dto.Film;
 import com.cinema.dto.Director;
 import com.cinema.dto.Genere;
 import com.cinema.dto.Session;
+import com.cinema.service.DirectorService;
 
 public class FilmService {
 	
-
-	public FilmService() {}
+	private DirectorService serveiDirector;
+	
+	public FilmService() {
+		DirectorService serveiDirector = new DirectorService();
+		this.serveiDirector = serveiDirector;
+	}
 
 	// LListat de pel·lícules
 	public List<Film> getListFilms() {
@@ -45,6 +50,7 @@ public class FilmService {
 					Boolean premiere = resultat.getBoolean("flm_premiere");
 					double duration = resultat.getDouble("flm_duration");
 					Integer idDirector = resultat.getInt("flm_dir_id");
+					Director director = serveiDirector.getListDirectors(idDirector);
 					Film peli = new Film( Integer.valueOf(id), 
 												   title, 
 												   synopsis, 
@@ -54,7 +60,8 @@ public class FilmService {
 												   convertToLocalDate(release), 
 												   premiere,
 												   duration,
-												   idDirector);
+												   director
+												   );
 					System.out.println( peli.toString() );
 					list.add(peli);
 	            }
@@ -99,6 +106,7 @@ public class FilmService {
 					Boolean premiere = resultat.getBoolean("flm_premiere");
 					double duration = resultat.getDouble("flm_duration");
 					Integer idDirector = resultat.getInt("flm_dir_id");
+					Director director = serveiDirector.getListDirectors(idDirector);
 					Film peli = new Film( Integer.valueOf(id), 
 												   title, 
 												   synopsis, 
@@ -108,7 +116,7 @@ public class FilmService {
 												   convertToLocalDate(release), 
 												   premiere,
 												   duration,
-												   idDirector); 
+												   director); 
 					
 					System.out.println( peli.toString() );
 					list.add(peli);
@@ -152,6 +160,7 @@ public class FilmService {
 					Boolean premiere = resultat.getBoolean("flm_premiere");
 					double duration = resultat.getDouble("flm_duration");
 					Integer idDirector = resultat.getInt("flm_dir_id");
+					Director director = serveiDirector.getListDirectors(idDirector);
 					
 					Film peli = new Film( Integer.valueOf(id), 
 												   title, 
@@ -162,7 +171,7 @@ public class FilmService {
 												   convertToLocalDate(release), 
 												   premiere,
 												   duration,
-												   idDirector); 
+												   director); 
 					
 					System.out.println( peli.toString() );
 					list.add(peli);
@@ -268,6 +277,7 @@ public class FilmService {
 				Boolean premiere = resultat.getBoolean("flm_premiere");
 				double duration = resultat.getDouble("flm_duration");
 				Integer idDirector = resultat.getInt("flm_dir_id");
+				Director director = serveiDirector.getListDirectors(idDirector);
 				peli = new Film( Integer.valueOf(id), 
 											   title, 
 											   synopsis, 
@@ -277,7 +287,7 @@ public class FilmService {
 											   convertToLocalDate(release), 
 											   premiere,
 											   duration,
-											   idDirector); 
+											   director); 
 				
 				// Recuperam l'horari de la pel·lícula de la BD
 				List<Session> horari = getListSessions(id);

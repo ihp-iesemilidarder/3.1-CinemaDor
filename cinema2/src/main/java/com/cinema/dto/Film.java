@@ -24,7 +24,7 @@ public class Film implements Serializable {
     private List<Session> horari = new ArrayList<>();
     private double duration;
     private Boolean club;
-    private int director;
+    private Director director;
 
     public Film(Integer id, String nom, String sinopsi) {
         this.id = id;
@@ -38,14 +38,14 @@ public class Film implements Serializable {
         this.sinopsi = sinopsi;
         this.duration = duration;
     }
-    public Film(Integer id, String nom, String sinopsi,int director) {
+    public Film(Integer id, String nom, String sinopsi,Director director) {
         this.id = id;
         this.nom = nom;
         this.sinopsi = sinopsi;
         this.director = director;
     }
 
-    public Film(Integer id, String nom, String sinopsi,double duration, int director) {
+    public Film(Integer id, String nom, String sinopsi,double duration, Director director) {
         this.id = id;
         this.nom = nom;
         this.sinopsi = sinopsi;
@@ -76,7 +76,7 @@ public class Film implements Serializable {
         this.edatRec=edatRec;
     }
 
-    public Film(Integer id, String nom, String sinopsi, String caratula, Integer edatRec, Genere genere, LocalDate dataEstreno, Boolean estreno, double duration, int director) {
+    public Film(Integer id, String nom, String sinopsi, String caratula, Integer edatRec, Genere genere, LocalDate dataEstreno, Boolean estreno, double duration, Director director) {
         this.id = id;
         this.nom = nom;
         this.sinopsi = sinopsi;
@@ -89,7 +89,7 @@ public class Film implements Serializable {
         this.director = director;
     }
     
-    public Film(Integer id, String nom, String sinopsi, String caratula, Integer edatRec, Genere genere, LocalDate dataEstreno, Boolean estreno, int director) {
+    public Film(Integer id, String nom, String sinopsi, String caratula, Integer edatRec, Genere genere, LocalDate dataEstreno, Boolean estreno, Director director) {
         this.id = id;
         this.nom = nom;
         this.sinopsi = sinopsi;
@@ -110,11 +110,11 @@ public class Film implements Serializable {
 		this.club = club;
 	}
 
-	public int getDirector() {
+	public Director getDirector() {
 		return director;
 	}
 
-	public void setDirector(int director) {
+	public void setDirector(Director director) {
 		this.director = director;
 	}
 
