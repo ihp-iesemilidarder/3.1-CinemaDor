@@ -56,10 +56,10 @@ public class DirectorService {
     }
 	
 	// Llista filtrada per genere
-	public List<Director> getListDirectors(Integer idDirector) {
+	public Director getListDirectors(Integer idDirector) {
 		
 		BDConnectionMySQL bd = new BDConnectionMySQL();
-		List<Director> list = new ArrayList<>();
+		Director director = null;
 		try {
 			String query = "select * from director";
 			if (idDirector!=null) {
@@ -78,12 +78,11 @@ public class DirectorService {
 					String name = resultat.getString("DIR_NAME");
 					String surname = resultat.getString("DIR_SURNAME");
 					
-					Director director = new Director( Integer.valueOf(id), 
+					director = new Director( Integer.valueOf(id), 
 												   name,
 												   surname); 
 					
 					System.out.println( director.toString() );
-					list.add(director);
 				}
 			}
 			sentencia.close();
@@ -92,7 +91,7 @@ public class DirectorService {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return list;
+		return director;
 	}
 
 	public List<Film> getListFilmsbyTitle(String titleFilter) {

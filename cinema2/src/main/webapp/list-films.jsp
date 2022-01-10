@@ -85,7 +85,7 @@
 										<img src="img/age-tp.png" style="width:20px"/>
 										Edat recomanada: <c:out value="${film.edatRec}"/>
 										<div>Duration: <c:out value="${film.duration}"></c:out>h</div>
-										<div>Director: <c:out value="${Director.getListDirectors(film.director).get(0).getDIR_NAME()}"></c:out> <c:out value="${Director.getListDirectors(film.director).get(0).getDIR_SURNAME()}"></c:out></div>
+										<div>Director: <c:out value="${Director.getListDirectors(film.director).getDIR_NAME()}"></c:out> <c:out value="${Director.getListDirectors(film.director).getDIR_SURNAME()}"></c:out></div>
 									</p>
 								</div>
 							</li>
